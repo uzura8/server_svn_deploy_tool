@@ -21,7 +21,7 @@ SVN_STATUS_RESULT=`svn status`
 
 # if exists diff, not exicute update
 if [ -n "${SVN_STATUS_RESULT}" ]; then
-	SUBJECT="[svn_update error]${SRC_DIR}"
+	SUBJECT="[svn_update_error]${SRC_DIR}"
 	BODY="svn error at ${SRC_DIR}: ${SVN_STATUS_RESULT}"
 	echo ${BODY} | mail -s ${SUBJECT} ${ADMIN_MAIL}
 	#echo $SVN_STATUS_RESULT # for debug
