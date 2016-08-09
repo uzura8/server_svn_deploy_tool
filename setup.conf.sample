@@ -1,0 +1,12 @@
+#setup.conf
+
+# source file path
+SRC_DIR="/var/www/sites/example.com"
+
+# svn account
+SVN_USERNAME="username"
+SVN_PASSWORD="password"
+
+# email for send notice result
+ADMIN_MAIL="admin@example.com"
+
