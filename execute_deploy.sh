@@ -26,11 +26,10 @@ if [ -n "${SVN_STATUS_RESULT}" ]; then
 	echo ${BODY} | mail -s ${SUBJECT} ${ADMIN_MAIL}
 	#echo $SVN_STATUS_RESULT # for debug
 else
-	SVN_UPDATE_RESULT=`svn update --username $SVN_USERNAME --password $SVN_PASSWORD --no-auth-cache --non-interactive`
-	REGEXP="更新しました"
+	SVN_UPDATE_RESULT=`svn update --username $SVN_USERNAME --password $SVN_PASSWORD --no-auth-cache --non-interactive | grep "^\(A\|B\|D\|U\|C\|G\|E\)\s"`
 
 	# if updated, send notice mail.
-	if [[ $SVN_UPDATE_RESULT =~ $REGEXP ]]; then
+	if [ -n "${SVN_UPDATE_RESULT}" ]; then
 		SUBJECT="[svn_updated]${SRC_DIR}"
 		BODY="svn updated at ${SRC_DIR}: ${SVN_UPDATE_RESULT}"
 		echo ${BODY} | mail -s ${SUBJECT} ${ADMIN_MAIL}
